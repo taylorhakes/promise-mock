@@ -63,8 +63,8 @@ describe('testing', function() {
         });;
         Promise.runAll();
         expect(result1).toBe('hello1');
-        expect(result2).toBe('hello1');
-        expect(result3).toBe('hello1');
+        expect(result2).toBe('hello2');
+        expect(result3).toBe('hello3');
     });
     
 });
