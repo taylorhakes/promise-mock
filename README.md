@@ -7,15 +7,15 @@ Promise mocking library to make Promises resolve synchronously
 - Stack traces are preserved / Easier debugging
 - Can be easier to write tests (depends)
 
-## Don't Promises need to be async or else my code will break?
+### Don't Promises need to be async or else my code will break?
 **Nope**
 
-## Node and Webpack/Browserify
+### Use with Node and Webpack/Browserify
 ```
 npm install promise-mock
 ```
 
-## Simple use with Mocha or Jasmine
+### Simple use with Mocha or Jasmine
 
 Resolve a single Promise
 ```js
@@ -72,11 +72,11 @@ describe('testing', function() {
 
 
 
-## Testing
+### Testing
 ```
 npm install
 npm test
 ```
 
-## License
+### License
 MIT
