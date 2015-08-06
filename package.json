@@ -1,0 +1,31 @@
+{
+  "name": "promise-mock",
+  "version": "1.0.0",
+  "description": "Promise mock library for synchronous Promise testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "JASMINE_CONFIG_PATH=jasmine.json ./node_modules/jasmine/bin/jasmine.js;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://taylorhakes@github.com/taylorhakes/promise-mock.git"
+  },
+  "author": "Taylor Hakes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taylorhakes/promise-mock/issues"
+  },
+  "homepage": "https://github.com/taylorhakes/promise-mock",
+  "devDependencies": {
+    "jasmine": "^2.3.1"
+  },
+  "keywords": [
+    "promise",
+    "promise-polyfill",
+    "ES6",
+    "promises-aplus"
+  ],
+  "dependencies": {
+    "promise-polyfill": "^2.1.0"
+  }
+}
