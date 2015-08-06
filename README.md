@@ -1,11 +1,6 @@
 promise-mock
 =============
 
-## Downloads
-
-- [Promise](https://raw.github.com/taylorhakes/promisemock/master/index.js)
-- [Promise-min](https://raw.github.com/taylorhakes/promise-mock/master/Promise.min.js)
-
 ### Node and Webpack/Browserify
 ```
 npm install promise-mock
