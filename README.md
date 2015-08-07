@@ -1,4 +1,4 @@
-promise-mock
+promise-mock [![Build Status](https://travis-ci.org/taylorhakes/promise-mock.svg)](https://travis-ci.org/taylorhakes/promise-mock)
 =============
 Promise mocking library to make Promises resolve synchronously
 
