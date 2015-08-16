@@ -4,6 +4,7 @@ Promise mocking library to make Promises resolve synchronously
 
 ## Why
 - Tests are faster
+- Don't need `done()` function
 - Stack traces are preserved / Easier debugging
 - Can be easier to write tests (depends)
 
