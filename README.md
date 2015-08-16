@@ -17,8 +17,45 @@ npm install promise-mock
 ```
 
 ### Simple use with Mocha or Jasmine
+Get the result of a Promise `PromiseMock.getResult`
+```js
+var PromiseMock = require('promise-mock');
 
-Resolve a single Promise
+describe('testing', function() {
+    beforeEach(function() {
+        PromiseMock.install()
+    });
+    afterEach(function() {
+        PromiseMock.uninstall();
+    });
+    it('Sync Promise test', function() {
+        var result = PromiseMock.getResult(Promise.resolve('hello')));
+        expect(result).toBe('hello');
+    });
+    
+});
+```
+
+Handle errors synchronously
+```js
+var PromiseMock = require('promise-mock');
+
+describe('testing', function() {
+    beforeEach(function() {
+        PromiseMock.install()
+    });
+    afterEach(function() {
+        PromiseMock.uninstall();
+    });
+    it('Sync Promise test', function() {
+        expect(function() {
+            PromiseMock.getResult(Promise.reject(new Error('An error')));
+        }).toThrow(new Error('An Error'));
+    });
+});
+```
+
+Execute a single Async callback
 ```js
 var PromiseMock = require('promise-mock');
 

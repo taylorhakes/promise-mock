@@ -8,6 +8,35 @@ describe('Promise mock', function() {
 	afterEach(function() {
 		Promise.uninstall();
 	});
+	describe('getResult', function() {
+		it('no Promise throws', function() {
+			expect(function() {
+				Promise.getResult(1);
+			}).toThrow();
+		});
+		it('results single Promise', function() {
+			expect(Promise.getResult(Promise.resolve(1))).toBe(1);
+		});
+		it('long Promise chain resolves', function() {
+			expect(Promise.getResult(Promise.resolve(1).then(function() {
+			}).then(function() {
+				return 3;
+			}))).toBe(3);
+		});
+		it('error in promise chain', function() {
+			expect(function() {
+				Promise.getResult(Promise.resolve(1).then(function() {
+				}).then(function() {
+					throw new Error('An error');
+				}))
+			}).toThrow();
+		});
+		it('simple error to throw', function() {
+			expect(function() {
+				Promise.getResult(Promise.reject(new Error('Bad data')));
+			}).toThrow(new Error('Bad data'));
+		});
+	});
 	describe('run', function() {
 		it('no promise throws', function() {
 			expect(function() {
