@@ -55,7 +55,7 @@ describe('testing', function() {
 });
 ```
 
-Execute a single Async callback
+Execute a single async callback
 ```js
 var PromiseMock = require('promise-mock');
 
