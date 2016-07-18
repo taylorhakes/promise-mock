@@ -4,8 +4,8 @@ var Promise = require('promise-polyfill'),
 
 function PromiseMock() {
 	Promise.apply(this, arguments);
-
 }
+PromiseMock.prototype = Object.create(Promise.prototype);
 Object.keys(Promise).forEach(function(key) {
 	PromiseMock[key] = Promise[key];
 });

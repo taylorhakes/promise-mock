@@ -8,6 +8,21 @@ describe('Promise mock', function() {
 	afterEach(function() {
 		Promise.uninstall();
 	});
+	describe('new Promise()', function() {
+		it('should have a then', function(){
+			expect(new Promise(function(){}).then).toBeDefined();
+		});
+		it('should resolve on run', function () {
+			var resolve;
+			var spy = jasmine.createSpy();
+			new Promise(function(r){
+				resolve = r;
+			}).then(spy);
+			resolve('blah');
+			Promise.run();
+			expect(spy).toHaveBeenCalledWith('blah');
+		})
+	});
 	describe('getResult', function() {
 		it('no Promise throws', function() {
 			expect(function() {
