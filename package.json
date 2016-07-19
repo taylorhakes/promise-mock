@@ -1,6 +1,6 @@
 {
   "name": "promise-mock",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Promise mock library for synchronous Promise testing",
   "main": "index.js",
   "scripts": {
@@ -26,6 +26,6 @@
     "promises-aplus"
   ],
   "dependencies": {
-    "promise-polyfill": "^2.1.0"
+    "promise-polyfill": "*"
   }
 }
