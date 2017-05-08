@@ -75,7 +75,7 @@ describe('Promise mock', function() {
 			Promise.reject().catch(function() {
 				done = true;
 			});
-			Promise.run();
+			Promise.run(2);
 			expect(done).toBe(true);
 		});
 		it('multiple runs', function() {
@@ -95,7 +95,7 @@ describe('Promise mock', function() {
 			}).catch(function() {
 				done = true;
 			});
-			Promise.run();
+			Promise.run(2);
 			expect(done).toBe(false);
 			Promise.run();
 			expect(done).toBe(true);
@@ -106,7 +106,7 @@ describe('Promise mock', function() {
 			}).then(function() {
 				done = true;
 			});
-			Promise.run();
+			Promise.run(2);
 			expect(done).toBe(false);
 			Promise.run();
 			expect(done).toBe(true);
@@ -119,7 +119,7 @@ describe('Promise mock', function() {
 			}).then(function() {
 				done = false;
 			});
-			Promise.run();
+			Promise.run(2);
 			expect(done).toBe(false);
 			Promise.run();
 			expect(done).toBe(true);
