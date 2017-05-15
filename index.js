@@ -29,7 +29,7 @@ PromiseMock.run = function run(count) {
 	}
 
 	while(runTimes > 0 && PromiseMock.waiting.length > 0) {
-		PromiseMock.waiting.pop()();
+		PromiseMock.waiting.shift()();
 		runTimes--;
 	}
 };
