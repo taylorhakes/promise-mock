@@ -1,6 +1,6 @@
 {
   "name": "promise-mock",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Promise mock library for synchronous Promise testing",
   "main": "index.js",
   "scripts": {

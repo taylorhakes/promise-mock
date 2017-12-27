@@ -1,63 +1,69 @@
 var Promise = require('promise-polyfill'),
-	root = typeof window === 'undefined' ? global : window;
+  root = typeof window === 'undefined' ? global : window;
 
 
 function PromiseMock() {
-	Promise.apply(this, arguments);
+  Promise.apply(this, arguments);
 }
 PromiseMock.prototype = Object.create(Promise.prototype);
-Object.keys(Promise).forEach(function(key) {
-	PromiseMock[key] = Promise[key];
+Object.keys(Promise).forEach(function (key) {
+  PromiseMock[key] = Promise[key];
 });
 
 // Queue of waiting callbacks
 PromiseMock.waiting = [];
 
-// Update the immediate function to push to queue
-PromiseMock._setImmediateFn(function mockImmediateFn(fn) {
-	PromiseMock.waiting.push(fn);
-});
 
 /**
  * Execute a pending Promise
  */
 PromiseMock.run = function run(count) {
-	var runTimes = count ? count : 1;
+  var runTimes = count ? count : 1;
 
-	if (PromiseMock.waiting.length === 0) {
-		throw new Error('No Promises waiting. Can\'t Promise.run()')
-	}
+  if (PromiseMock.waiting.length === 0) {
+    throw new Error('No Promises waiting. Can\'t Promise.run()')
+  }
 
-	while(runTimes > 0 && PromiseMock.waiting.length > 0) {
-		PromiseMock.waiting.shift()();
-		runTimes--;
-	}
+  while (runTimes > 0 && PromiseMock.waiting.length > 0) {
+    PromiseMock.waiting.shift()();
+    runTimes--;
+  }
 };
 
 /**
  * Execute all pending Promises
  */
 PromiseMock.runAll = function runAll() {
-	if (PromiseMock.waiting.length === 0) {
-		throw new Error('No Promises waiting. Can\'t Promise.run()')
-	}
+  if (PromiseMock.waiting.length === 0) {
+    throw new Error('No Promises waiting. Can\'t Promise.run()')
+  }
 
-	while(PromiseMock.waiting.length > 0) {
-		PromiseMock.run();
-	}
+  while (PromiseMock.waiting.length > 0) {
+    PromiseMock.run();
+  }
 };
 
 PromiseMock._orginal = null;
 PromiseMock.install = function install() {
-	PromiseMock._original = root.Promise;
-	root.Promise = PromiseMock;
+  PromiseMock._original = root.Promise;
+  PromiseMock._originalImmediate = Promise._immediateFn;
+  // Update the immediate function to push to queue
+  Promise._immediateFn = function mockImmediateFn(fn) {
+    PromiseMock.waiting.push(fn);
+  };
+
+  root.Promise = PromiseMock;
 };
 
 PromiseMock.uninstall = function uninstall() {
-	PromiseMock.clear();
-	if (PromiseMock._original) {
-		root.Promise = PromiseMock._original;
-	}
+  PromiseMock.clear();
+  if (PromiseMock._original) {
+    root.Promise = PromiseMock._original;
+  }
+
+  if (PromiseMock._originalImmediate) {
+    Promise._immediateFn = PromiseMock._originalImmediate;
+  }
 };
 
 /**
@@ -66,24 +72,24 @@ PromiseMock.uninstall = function uninstall() {
  * @returns {*}
  */
 PromiseMock.getResult = function result(promise) {
-	var result, error;
-	promise.then(function(promResult) {
-		result = promResult;
-	}, function(promError) {
-		error = promError;
-	});
-	PromiseMock.runAll();
-	if (error) {
-		throw error;
-	}
-	return result;
+  var result, error;
+  promise.then(function (promResult) {
+    result = promResult;
+  }, function (promError) {
+    error = promError;
+  });
+  PromiseMock.runAll();
+  if (error) {
+    throw error;
+  }
+  return result;
 };
 
 /**
  * Clear all pending Promises
  */
 PromiseMock.clear = function clear() {
-	PromiseMock.waiting = [];
+  PromiseMock.waiting = [];
 };
 
 module.exports = PromiseMock;
