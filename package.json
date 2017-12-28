@@ -1,10 +1,13 @@
 {
   "name": "promise-mock",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "Promise mock library for synchronous Promise testing",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "module": "src/index.js",
   "scripts": {
-    "test": "JASMINE_CONFIG_PATH=jasmine.json ./node_modules/jasmine/bin/jasmine.js;"
+    "test": "JASMINE_CONFIG_PATH=jasmine.json ./node_modules/jasmine/bin/jasmine.js;",
+    "build": "run-p build:**",
+    "build:cjs": "rollup -i src/index.js -o lib/index.js -f cjs"
   },
   "repository": {
     "type": "git",
@@ -17,7 +20,9 @@
   },
   "homepage": "https://github.com/taylorhakes/promise-mock",
   "devDependencies": {
-    "jasmine": "^2.3.1"
+    "jasmine": "^2.3.1",
+    "npm-run-all": "^4.1.2",
+    "rollup": "^0.52.0"
   },
   "keywords": [
     "promise",

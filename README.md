@@ -19,7 +19,7 @@ npm install promise-mock
 ### Simple use with Mocha or Jasmine
 Get the result of a Promise `PromiseMock.getResult`
 ```js
-var PromiseMock = require('promise-mock');
+import PromiseMock from 'promise-mock';
 
 describe('testing', function() {
     beforeEach(function() {
@@ -38,7 +38,7 @@ describe('testing', function() {
 
 Handle errors synchronously
 ```js
-var PromiseMock = require('promise-mock');
+import PromiseMock from 'promise-mock';
 
 describe('testing', function() {
     beforeEach(function() {
@@ -57,7 +57,7 @@ describe('testing', function() {
 
 Execute a single async callback
 ```js
-var PromiseMock = require('promise-mock');
+import PromiseMock from 'promise-mock';
 
 describe('testing', function() {
     beforeEach(function() {
@@ -79,7 +79,7 @@ describe('testing', function() {
 ```
 Resolve all pending Promises
 ```js
-var PromiseMock = require('promise-mock');
+import PromiseMock from 'promise-mock';
 
 describe('testing', function() {
     beforeEach(function() {
@@ -108,7 +108,12 @@ describe('testing', function() {
 });
 ```
 
+### For commonjs/require webpack and rollup
+Since the move to ES6 modules. You need to add `.default`
+```js
+const PromiseMock = require('promise-mock').default;
 
+```
 
 ### Testing
 ```
