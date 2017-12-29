@@ -1,6 +1,6 @@
 import Promise from 'promise-polyfill';
 
-const root = typeof window === 'undefined' ? global : window;
+var root = typeof window === 'undefined' ? global : window;
 
 
 function PromiseMock() {
