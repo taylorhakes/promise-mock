@@ -1,4 +1,4 @@
-var Promise = require('../src/index');
+var Promise = require('../lib/index');
 
 describe('Promise mock', function() {
 	var oldPromise;
