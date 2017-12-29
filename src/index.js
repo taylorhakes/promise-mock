@@ -93,4 +93,4 @@ PromiseMock.clear = function clear() {
   PromiseMock.waiting = [];
 };
 
-module.exports = PromiseMock;
+export default PromiseMock;
