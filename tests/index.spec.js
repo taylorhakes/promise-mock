@@ -174,5 +174,11 @@ describe('Promise mock', function() {
 			Promise.runAll();
 			expect(done).toBe(true);
 		});
+    it('runAll exception', function() {
+      expect(function() { Promise.runAll(); }).toThrow();
+    });
+    it('runAll no exception', function() {
+      Promise.runAll(false);
+    });
 	});
 });

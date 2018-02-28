@@ -37,7 +37,7 @@ PromiseMock.run = function run(count) {
  * @param strict boolean Throw error if none waiting
  */
 PromiseMock.runAll = function runAll(strict) {
-  if (strict === false && PromiseMock.waiting.length === 0) {
+  if (strict !== false && PromiseMock.waiting.length === 0) {
     throw new Error('No Promises waiting. Can\'t Promise.runAll()')
   }
 
