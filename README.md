@@ -107,7 +107,7 @@ describe('testing', function() {
     
 });
 ```
-**By default `Promise.runAll()` will throw an Error if there are not pending Promises. If you don't want an error, you can use `Promise.runAll(false)`**
+**By default `Promise.runAll()` will throw an Error if there are no pending Promises. If you don't want an error, you can use `Promise.runAll(false)`**
 
 ### For commonjs/require webpack and rollup
 Since the move to ES6 modules. You need to add `.default`
